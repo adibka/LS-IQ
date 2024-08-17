@@ -1,0 +1,7 @@
+mushroom_rl==1.10.0.post2
+tensorboard
+experiment-launcher
+Cython==0.29.37
+gym==0.17.1
+mujoco_py==2.0.2
+gdown

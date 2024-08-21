@@ -4,4 +4,9 @@ experiment-launcher
 Cython==0.29.37
 gym==0.17.1
 mujoco_py==2.0.2
+hydra-core==1.0.6
+gtimer
+pyyaml
+easydict
+termcolor
 gdown

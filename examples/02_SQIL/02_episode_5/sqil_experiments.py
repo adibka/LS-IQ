@@ -101,7 +101,7 @@ def experiment(env_id: str = "HalfCheetah-v2",
                gamma: float = 0.99,
                horizon: int = 1000,
                seed: int = 0,
-               num_trajs: int = 1):
+               num_trajs: int = 5):
 
     np.random.seed(seed)
     torch.random.manual_seed(seed)

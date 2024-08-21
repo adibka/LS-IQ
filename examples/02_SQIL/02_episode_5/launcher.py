@@ -9,13 +9,13 @@ if __name__ == '__main__':
     TEST = False
     USE_CUDA = True
     
-    N_SEEDS = 1
-    N_EXPS_IN_PARALLEL = 5          # or os.cpu_count() to use all cores
+    N_SEEDS = 5
+    N_EXPS_IN_PARALLEL = os.cpu_count()
     N_CORES = N_EXPS_IN_PARALLEL
-    MEMORY_SINGLE_JOB = 1000
+    MEMORY_SINGLE_JOB = 4000
     MEMORY_PER_CORE = N_EXPS_IN_PARALLEL * MEMORY_SINGLE_JOB // N_CORES
 
-    launcher = Launcher(exp_name='sqil_10',
+    launcher = Launcher(exp_name='sqil_5',
                         exp_file='sqil_experiments',
                         n_seeds=N_SEEDS,
                         n_exps_in_parallel=N_EXPS_IN_PARALLEL,
@@ -39,7 +39,7 @@ if __name__ == '__main__':
                           tau=0.005,
                           use_target=True,
                           learnable_alpha=False,
-                          num_trajs=10)
+                          num_trajs=5)
     
     log_std = [(-5, 2)]
     envs = ["Ant-v2",

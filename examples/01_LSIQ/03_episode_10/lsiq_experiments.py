@@ -88,7 +88,7 @@ def experiment(env_id: str = "HalfCheetah-v2",
                n_epochs_save: int = 100,
                logging_iter: int = 100,
                expert_data_path: str = None,
-               use_cuda: bool = False,
+               use_cuda: bool = True,
                lr_critic: float = 3e-4,
                lr_actor: float = 3e-5,
                results_dir: str = "./logs",
@@ -108,7 +108,8 @@ def experiment(env_id: str = "HalfCheetah-v2",
                lossQ_type: str = "sqil_like",
                gamma: float = 0.99,
                horizon: int = 1000,
-               seed: int = 0):
+               seed: int = 0,
+               num_trajs: int = 10):
 
     np.random.seed(seed)
     torch.random.manual_seed(seed)
@@ -123,7 +124,7 @@ def experiment(env_id: str = "HalfCheetah-v2",
     mdp = Gym(**env_params)
 
     # load expert data
-    expert_data = prepare_expert_data(data_path=expert_data_path)
+    expert_data = prepare_expert_data(data_path=expert_data_path, num_trajs=num_trajs, seed=seed)
 
     # logging stuff
     tb_writer = SummaryWriter(log_dir=results_dir)

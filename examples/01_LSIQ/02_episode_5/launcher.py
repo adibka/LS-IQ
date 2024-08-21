@@ -8,9 +8,9 @@ if __name__ == '__main__':
     USE_CUDA = True
     
     N_SEEDS = 5
-    N_EXPS_IN_PARALLEL = 8          # or os.cpu_count() to use all cores
+    N_EXPS_IN_PARALLEL = os.cpu_count()
     N_CORES = N_EXPS_IN_PARALLEL
-    MEMORY_SINGLE_JOB = 1000
+    MEMORY_SINGLE_JOB = 4000
     MEMORY_PER_CORE = N_EXPS_IN_PARALLEL * MEMORY_SINGLE_JOB // N_CORES
 
     launcher = Launcher(exp_name='lsiq_5',
@@ -26,8 +26,8 @@ if __name__ == '__main__':
                         use_timestamp=True,
                         )
 
-    default_params = dict(n_epochs=40,
-                          n_steps_per_epoch=1000,
+    default_params = dict(n_epochs=35,
+                          n_steps_per_epoch=10000,
                           n_eval_episodes=10,
                           n_steps_per_fit=1,
                           n_epochs_save=-1,

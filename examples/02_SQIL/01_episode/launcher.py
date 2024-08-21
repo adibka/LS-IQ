@@ -9,10 +9,10 @@ if __name__ == '__main__':
     TEST = False
     USE_CUDA = True
     
-    N_SEEDS = 1
-    N_EXPS_IN_PARALLEL = 5          # or os.cpu_count() to use all cores
+    N_SEEDS = 5
+    N_EXPS_IN_PARALLEL = os.cpu_count()
     N_CORES = N_EXPS_IN_PARALLEL
-    MEMORY_SINGLE_JOB = 1000
+    MEMORY_SINGLE_JOB = 4000
     MEMORY_PER_CORE = N_EXPS_IN_PARALLEL * MEMORY_SINGLE_JOB // N_CORES
 
     launcher = Launcher(exp_name='sqil_1',

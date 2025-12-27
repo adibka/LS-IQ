@@ -1,15 +1,13 @@
 import os
-from itertools import product
 from experiment_launcher import Launcher, is_local
-import torch
-import numpy as np
+
 
 if __name__ == '__main__':
     LOCAL = is_local()
     TEST = False
     USE_CUDA = True
     
-    N_SEEDS = 5
+    N_SEEDS = 1
     N_EXPS_IN_PARALLEL = os.cpu_count()
     N_CORES = N_EXPS_IN_PARALLEL
     MEMORY_SINGLE_JOB = 4000
@@ -41,7 +39,7 @@ if __name__ == '__main__':
                           loss_mode_exp="fix",
                           regularizer_mode="plcy",
                           learnable_alpha=False,
-                          num_trajs=1)
+                          num_trajs=3)
     
     log_std = [(-5, 2)]
     envs = ["Ant-v2",
@@ -62,21 +60,22 @@ if __name__ == '__main__':
     launcher.add_experiment(env_id__=envs[0], expert_data_path=expert_data_paths[0],
                             plcy_loss_mode__="value", init_alpha__=1e-3, Q_exp_loss__="MSE", reg_mult__=0.5, **default_params)
                             
-    # HalfCheetah
-    launcher.add_experiment(env_id__=envs[1], expert_data_path=expert_data_paths[1],
-                            plcy_loss_mode__="value", init_alpha__=1e-3, Q_exp_loss__="MSE", reg_mult__=0.5, **default_params)
+    # # HalfCheetah
+    # launcher.add_experiment(env_id__=envs[1], expert_data_path=expert_data_paths[1],
+    #                         plcy_loss_mode__="value", init_alpha__=1e-3, Q_exp_loss__="MSE", reg_mult__=0.5, **default_params)
+
+    # # Humanoid
+    # launcher.add_experiment(env_id__=envs[3], expert_data_path=expert_data_paths[3],
+    #                         plcy_loss_mode__="q_old_policy", init_alpha__=0.1, Q_exp_loss__="MSE", reg_mult__=0.5, **default_params)
+
+    # # Walker2d
+    # launcher.add_experiment(env_id__=envs[4], expert_data_path=expert_data_paths[4],
+    #                         plcy_loss_mode__="value", init_alpha__=1e-3, Q_exp_loss__="MSE", reg_mult__=0.5, **default_params)
 
     # Hopper
-    launcher.add_experiment(env_id__=envs[2], expert_data_path=expert_data_paths[2],
-                            plcy_loss_mode__="value", init_alpha__=1e-3, Q_exp_loss__="MSE", reg_mult__=0.5, **default_params)
+    #launcher.add_experiment(env_id__=envs[2], expert_data_path=expert_data_paths[2],
+    #                        plcy_loss_mode__="value", init_alpha__=1e-3, Q_exp_loss__="MSE", reg_mult__=0.5, **default_params)
 
-    # Humanoid
-    launcher.add_experiment(env_id__=envs[3], expert_data_path=expert_data_paths[3],
-                            plcy_loss_mode__="q_old_policy", init_alpha__=0.1, Q_exp_loss__="MSE", reg_mult__=0.5, **default_params)
-
-    # Walker2d
-    launcher.add_experiment(env_id__=envs[4], expert_data_path=expert_data_paths[4],
-                            plcy_loss_mode__="value", init_alpha__=1e-3, Q_exp_loss__="MSE", reg_mult__=0.5, **default_params)
-    
+ 
     launcher.run(LOCAL, TEST)
 

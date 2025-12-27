@@ -49,7 +49,7 @@ if __name__ == '__main__':
             "Humanoid-v2",
             "Walker2d-v2"]
     path_to_datasets = "../../experts/"
-    expert_data_filenames = ["Ant-v2_25.npz",
+    expert_data_filenames = ["Ant-v2_25_from_cs285.npz",
                              "HalfCheetah-v2_25.npz",
                              "Hopper-v2_25.npz",
                              "Humanoid-v2_25.npz",
@@ -63,3 +63,4 @@ if __name__ == '__main__':
                             
     
     launcher.run(LOCAL, TEST)
+    

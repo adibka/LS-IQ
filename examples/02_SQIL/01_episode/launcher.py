@@ -39,7 +39,7 @@ if __name__ == '__main__':
                           tau=0.005,
                           use_target=True,
                           learnable_alpha=False,
-                          num_trajs=1)
+                          num_trajs=3)
     
     log_std = [(-5, 2)]
     envs = ["Ant-v2",
@@ -64,18 +64,17 @@ if __name__ == '__main__':
     launcher.add_experiment(env_id__=envs[1], expert_data_path=expert_data_paths[1],
                             init_alpha__=0.2, reg_mult__=0.5, **default_params)
 
-    # Hopper
-    launcher.add_experiment(env_id__=envs[2], expert_data_path=expert_data_paths[2],
-                            init_alpha__=0.2, reg_mult__=0.5, **default_params)
-
     # Humanoid
     launcher.add_experiment(env_id__=envs[3], expert_data_path=expert_data_paths[3],
                             init_alpha__=0.05, reg_mult__=0.5, **default_params)
 
     # Walker2d
     launcher.add_experiment(env_id__=envs[4], expert_data_path=expert_data_paths[4],
-                            init_alpha__=0.2, reg_mult__=0.5, **default_params)
-         
+                            init_alpha__=0.2, reg_mult__=0.5, **default_params) 
+
+    # Hopper
+    #launcher.add_experiment(env_id__=envs[2], expert_data_path=expert_data_paths[2],
+    #                        init_alpha__=0.2, reg_mult__=0.5, **default_params) 
 
     launcher.run(LOCAL, TEST)
 
